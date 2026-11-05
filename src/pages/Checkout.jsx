@@ -4,7 +4,7 @@ import { clearCart } from "../redux/cart/cartSlice";
 import { toast } from "react-toastify";
 import { createPurchaseThunk } from "../redux/checkout/checkoutSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Check, LockKeyhole, MapPin, ShieldCheck, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, LockKeyhole, MapPin, Phone, ShieldCheck, ShoppingBag } from "lucide-react";
 
 const formatPrice = (price) =>
   new Intl.NumberFormat("en-US", {
@@ -23,6 +23,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
+    phone: "",
     address: "",
     city: "",
     postalCode: "",
@@ -112,6 +113,23 @@ const Checkout = () => {
                 </div>
               </div>
               <div className="grid gap-5 p-5 sm:grid-cols-2 sm:p-7">
+                <label className="space-y-2 sm:col-span-2">
+                  <span className="text-sm font-semibold text-slate-700">Phone number</span>
+                  <span className="relative block">
+                    <Phone size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input
+                      type="tel"
+                      name="phone"
+                      autoComplete="tel"
+                      inputMode="tel"
+                      placeholder="+1 555 123 4567"
+                      value={userInfo.phone}
+                      onChange={handleInputChange}
+                      className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm outline-none transition focus:border-[#ff4e1f] focus:bg-white focus:ring-4 focus:ring-[#ff4e1f]/10"
+                      required
+                    />
+                  </span>
+                </label>
                 <label className="space-y-2 sm:col-span-2">
                   <span className="text-sm font-semibold text-slate-700">Street address</span>
                   <input

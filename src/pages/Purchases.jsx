@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCustomerPurchases, deleteCustomerPurchase } from "../redux/purchase/purchaseSlice";
 import { toast } from "react-toastify";
-import { ArrowLeft, MapPin, Package, ShoppingBag, Trash2 } from "lucide-react";
+import { ArrowLeft, MapPin, Package, Phone, ShoppingBag, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const formatPrice = (price) =>
@@ -136,12 +136,20 @@ const Purchases = () => {
                     </div>
                   </div>
 
-                  {delivery && (delivery.address || delivery.city || delivery.postalCode) && (
-                    <div className="flex items-start gap-2 border-t border-slate-100 bg-[#faf9f6] px-5 py-4 text-xs leading-5 text-slate-500 sm:px-6">
-                      <MapPin size={15} className="mt-0.5 shrink-0 text-[#ff4e1f]" />
-                      <span>
-                        Delivered to: {[delivery.address, delivery.city, delivery.postalCode].filter(Boolean).join(", ")}
-                      </span>
+                  {delivery && (delivery.address || delivery.city || delivery.postalCode || delivery.phone) && (
+                    <div className="flex flex-col gap-2 border-t border-slate-100 bg-[#faf9f6] px-5 py-4 text-xs leading-5 text-slate-500 sm:px-6">
+                      {(delivery.address || delivery.city || delivery.postalCode) && (
+                        <p className="flex items-start gap-2">
+                          <MapPin size={15} className="mt-0.5 shrink-0 text-[#ff4e1f]" />
+                          <span>Delivered to: {[delivery.address, delivery.city, delivery.postalCode].filter(Boolean).join(", ")}</span>
+                        </p>
+                      )}
+                      {delivery.phone && (
+                        <p className="flex items-center gap-2">
+                          <Phone size={14} className="shrink-0 text-[#ff4e1f]" />
+                          <span>Contact: {delivery.phone}</span>
+                        </p>
+                      )}
                     </div>
                   )}
                 </article>
