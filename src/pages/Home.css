@@ -29,18 +29,7 @@
   will-change: transform;
 }
 
-.orung-seal-mark {
-  animation: orung-mark-spin 3s linear infinite;
-  will-change: transform;
-}
-
 @keyframes orung-seal-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes orung-mark-spin {
   to {
     transform: rotate(360deg);
   }

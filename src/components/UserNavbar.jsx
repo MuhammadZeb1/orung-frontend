@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { 
   FaHome, 
   FaUser, 
@@ -17,6 +17,7 @@ import {
 import { cn } from "../lib/utils";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/auth/authSlice";
+import orungLogo from "../assets/Orung Logo.png";
 
 export default function UserNavbar() {
   const navigate = useNavigate();
@@ -33,10 +34,10 @@ export default function UserNavbar() {
 
   return (
     <div className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-white border-b shadow-sm">
-      {/* Logo */}
-      <div className="flex-1">
-        <span className="text-2xl font-bold text-blue-600">MyProject</span>
-      </div>
+      <Link to="/" className="flex flex-1 items-center gap-2" aria-label="Orung home">
+        <img className="size-10 rounded-full object-contain" src={orungLogo} alt="" />
+        <span className="text-xl font-bold tracking-[.12em] text-[#121212]">ORUNG</span>
+      </Link>
 
       {/* Navigation Menu */}
       <NavigationMenu>

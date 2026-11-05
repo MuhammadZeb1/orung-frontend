@@ -4,6 +4,7 @@ import { ArrowDownRight, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cart/cartSlice";
 import { fetchProducts } from "../redux/products/productsSlice";
+import orungLogo from "../assets/Orung Logo.png";
 import "./Home.css";
 
 const categories = [
@@ -106,11 +107,8 @@ function Home() {
                   <textPath href="#orung-stamp-circle">ORUNG • THE FASHION YOU IMAGINED • ORUNG • THE FASHION YOU IMAGINED •</textPath>
                 </text>
               </svg>
-              <span className="absolute left-1/2 top-1/2 grid size-[66px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[#121212]">
-                <span className="orung-seal-mark relative grid size-8 place-items-center font-sans text-[25px] font-semibold leading-none text-[#faf9f6]">
-                  O
-                  <span className="absolute right-0 top-0 size-2 rounded-full bg-[#ff4e1f]" />
-                </span>
+              <span className="absolute left-1/2 top-1/2 grid size-[66px] -translate-x-1/2 -translate-y-1/2 place-items-center overflow-hidden rounded-full bg-white">
+                <img className="size-full object-contain" src={orungLogo} alt="Orung logo" />
               </span>
             </div>
           </div>
