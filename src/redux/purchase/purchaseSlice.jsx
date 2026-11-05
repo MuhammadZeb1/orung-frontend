@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../services/api";
+import { logout } from "../auth/authSlice";
 
 // ------------------- ASYNC THUNKS -------------------
 
@@ -104,6 +105,9 @@ const purchaseSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(logout, (state) => {
+        state.customerPurchases = [];
+      })
       // 1. ALL .addCase MUST GO FIRST
       .addCase(fetchCustomerPurchases.fulfilled, (state, action) => {
         state.loading = false;

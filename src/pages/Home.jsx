@@ -259,17 +259,17 @@ function Home() {
                 Your feed already has the taste. Now get paid for it.
               </h2>
               <p className="mb-6 max-w-[470px] text-base leading-[1.65] text-[#faf9f6]/75">
-                Share the pieces you&apos;d wear anyway. Every link is tracked, every sale is paid out — no minimum followers, no gatekeeping.
+                Discover our curated affiliate picks and head straight to our partners to explore the pieces you love.
               </p>
-              <Link className={`${buttonBase} border-[#ff4e1f] bg-[#ff4e1f] font-bold hover:border-[#faf9f6] hover:bg-[#faf9f6]`} to="/signup">
-                APPLY TO BECOME AN AFFILIATE <ArrowRight size={16} />
+              <Link className={`${buttonBase} border-[#ff4e1f] bg-[#ff4e1f] font-bold hover:border-[#faf9f6] hover:bg-[#faf9f6]`} to="/affiliate">
+                EXPLORE AFFILIATE PICKS <ArrowRight size={16} />
               </Link>
             </div>
             <ul className="relative z-[1] m-0 flex list-none flex-col gap-5 p-0">
-              <li className="flex items-start gap-[13px] text-[14.5px] leading-[1.6] text-[#faf9f6]/90"><span className="grid size-[26px] shrink-0 place-items-center rounded-full border border-[#ff4e1f]/55 font-mono text-[11px] text-[#ff4e1f]">1</span> Earn up to 15% commission on every order you refer.</li>
-              <li className="flex items-start gap-[13px] text-[14.5px] leading-[1.6] text-[#faf9f6]/90"><span className="grid size-[26px] shrink-0 place-items-center rounded-full border border-[#ff4e1f]/55 font-mono text-[11px] text-[#ff4e1f]">2</span> Get early access to drops before they go public.</li>
-              <li className="flex items-start gap-[13px] text-[14.5px] leading-[1.6] text-[#faf9f6]/90"><span className="grid size-[26px] shrink-0 place-items-center rounded-full border border-[#ff4e1f]/55 font-mono text-[11px] text-[#ff4e1f]">3</span> Personal dashboard to track clicks, sales and payouts.</li>
-              <li className="flex items-start gap-[13px] text-[14.5px] leading-[1.6] text-[#faf9f6]/90"><span className="grid size-[26px] shrink-0 place-items-center rounded-full border border-[#ff4e1f]/55 font-mono text-[11px] text-[#ff4e1f]">4</span> Paid out monthly — straight to your bank or wallet.</li>
+              <li className="flex items-start gap-[13px] text-[14.5px] leading-[1.6] text-[#faf9f6]/90"><span className="grid size-[26px] shrink-0 place-items-center rounded-full border border-[#ff4e1f]/55 font-mono text-[11px] text-[#ff4e1f]">1</span> Browse a hand-picked collection of partner products.</li>
+              <li className="flex items-start gap-[13px] text-[14.5px] leading-[1.6] text-[#faf9f6]/90"><span className="grid size-[26px] shrink-0 place-items-center rounded-full border border-[#ff4e1f]/55 font-mono text-[11px] text-[#ff4e1f]">2</span> Search by name and filter by category.</li>
+              <li className="flex items-start gap-[13px] text-[14.5px] leading-[1.6] text-[#faf9f6]/90"><span className="grid size-[26px] shrink-0 place-items-center rounded-full border border-[#ff4e1f]/55 font-mono text-[11px] text-[#ff4e1f]">3</span> Sort by newest or compare prices.</li>
+              <li className="flex items-start gap-[13px] text-[14.5px] leading-[1.6] text-[#faf9f6]/90"><span className="grid size-[26px] shrink-0 place-items-center rounded-full border border-[#ff4e1f]/55 font-mono text-[11px] text-[#ff4e1f]">4</span> Follow a link to the partner to learn more or shop.</li>
             </ul>
             <ArrowDownRight className="pointer-events-none absolute -bottom-[60px] -right-[25px] text-[#ff4e1f]/15" size={190} strokeWidth={0.7} aria-hidden="true" />
           </div>

@@ -8,7 +8,8 @@ import {
   FaPlus, 
   FaSignOutAlt, 
   FaChartBar, // New icon for Analytics
-  FaHistory   // New icon for Purchases
+  FaHistory,   // New icon for Purchases
+  FaLink
 } from "react-icons/fa";
 import {
   NavigationMenu,
@@ -124,6 +125,21 @@ function AdminNavbar() {
                     ))}
                   </ul>
                 </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavLink
+                  to="/admin/affiliate-products"
+                  className={({ isActive }) =>
+                    cn(
+                      navigationMenuTriggerStyle(),
+                      "flex gap-2 items-center",
+                      isActive && "bg-orange-50 text-orange-600 font-bold"
+                    )
+                  }
+                >
+                  <FaLink /> Affiliate
+                </NavLink>
               </NavigationMenuItem>
 
               <NavigationMenuItem>

@@ -19,6 +19,8 @@ import Checkout from "./pages/Checkout";
 import AdminPurchases from "./pages/AdminPurchases";
 import Purchases from "./pages/Purchases";
 import AdminDashboard from "./pages/AdminDashboard";
+import AffiliateManagement from "./pages/AffiliateManagement";
+import AffiliateProducts from "./pages/AffiliateProducts";
 
 function App() {
   return (
@@ -50,6 +52,8 @@ function App() {
         <Route path="/customer/purchases" element={<Purchases />} />
         <Route path="/admin/purchases" element={<AdminPurchases />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/affiliate-products" element={<AffiliateManagement />} />
+        <Route path="/affiliate" element={<AffiliateProducts />} />
       </Routes>
     </>
   );

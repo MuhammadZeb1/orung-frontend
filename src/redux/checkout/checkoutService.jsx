@@ -9,7 +9,10 @@ export const createPurchase = async (payload) => {
     quantity: i.cartQty ?? 1,
   }));
 
-  const res = await api.post("/purchases/customer", { items: mappedItems });
+  const res = await api.post("/purchases/customer", {
+    items: mappedItems,
+    userInfo: payload.userInfo,
+  });
   return res.data;
 };
 
