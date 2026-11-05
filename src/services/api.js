@@ -1,8 +1,13 @@
 import axios from "axios";
 
+const baseURL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV
+    ? "http://localhost:3000/api"
+    : "https://orung-backend-ten.vercel.app/api");
+
 const api = axios.create({
-  baseURL: "http://localhost:3000/api",
-  // baseURL: "https://ecommece-meh-backend.vercel.app/",
+  baseURL,
 });
 
 // ✅ REQUEST INTERCEPTOR (Token attach)
