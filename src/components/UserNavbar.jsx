@@ -34,6 +34,9 @@ export default function UserNavbar() {
         </Link>
 
         <nav className="col-span-3 row-start-2 flex items-center justify-center gap-1 pt-2 sm:gap-3 sm:pt-3 md:col-span-1 md:col-start-2 md:row-start-1 md:pt-0" aria-label="Shop categories">
+          <NavLink to="/" end className={categoryLinkClass}>
+            Home
+          </NavLink>
           {categories.map((category) => (
             <NavLink
               key={category}
