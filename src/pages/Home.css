@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;900&family=Public+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap");
+
+@theme {
+  --font-display: "Big Shoulders Display", sans-serif;
+  --font-sans: "Public Sans", sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+.orung-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.orung-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.orung-marquee-track {
+  animation: orung-marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.orung-seal-rotation {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: orung-seal-spin 16s linear infinite;
+  will-change: transform;
+}
+
+.orung-seal-mark {
+  animation: orung-mark-spin 3s linear infinite;
+  will-change: transform;
+}
+
+@keyframes orung-seal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orung-mark-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orung-marquee {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orung-page *:not(.orung-marquee-track),
+  .orung-page *::before,
+  .orung-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .orung-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .orung-page svg.orung-seal-rotation {
+    animation: orung-seal-spin 48s linear infinite !important;
+  }
+}
