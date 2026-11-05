@@ -16,7 +16,7 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Provider store={store}>
         {/* <GoogleOAuthProvider clientId={googleClientId}> */}
-        <GoogleOAuthProvider clientId="118018508470-f1lugathu53bj7t5n1vqmlp7h0ji4n.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="118018508470-f1lugathu53bj7t5n1vqvmqlp7h0ji4n.apps.googleusercontent.com">
           <App />
         </GoogleOAuthProvider>
       </Provider>
