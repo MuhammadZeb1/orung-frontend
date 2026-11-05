@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdminAnalytics } from "../redux/purchase/purchaseSlice";
+import { fetchProducts } from "../redux/products/productsSlice";
+import { Link } from "react-router-dom";
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -8,7 +10,9 @@ import {
   Package, 
   BarChart3, 
   Medal,
-  Globe
+  Globe,
+  AlertTriangle,
+  ArrowRight
 } from "lucide-react";
 
 const AdminDashboard = () => {
@@ -16,10 +20,17 @@ const AdminDashboard = () => {
   // Defaulting to "all" to show lifetime stats on load
   const [period, setPeriod] = useState("all"); 
   const { analytics, loading } = useSelector((state) => state.purchase);
+  const { items: products } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(fetchAdminAnalytics(period));
   }, [dispatch, period]);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  const outOfStockProducts = products.filter((product) => Number(product.quantity) <= 0);
 
   // Safe access helper to prevent .toLocaleString() errors on undefined
   const formatCurrency = (val) => (val || 0).toLocaleString(undefined, { minimumFractionDigits: 2 });
@@ -89,6 +100,66 @@ const AdminDashboard = () => {
           ))}
         </div>
       </div>
+
+      {outOfStockProducts.length > 0 && (
+        <section
+          className="overflow-hidden rounded-2xl border border-red-200 bg-white shadow-sm"
+          aria-labelledby="out-of-stock-heading"
+          role="alert"
+        >
+          <div className="flex flex-col gap-4 bg-red-50 p-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="flex items-start gap-3">
+              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-red-100 text-red-700">
+                <AlertTriangle size={20} />
+              </span>
+              <div>
+                <h2 id="out-of-stock-heading" className="font-bold text-red-900">
+                  Inventory alert: {outOfStockProducts.length} {outOfStockProducts.length === 1 ? "product is" : "products are"} out of stock
+                </h2>
+                <p className="mt-1 text-sm text-red-800/75">
+                  These products currently have no available units. Restock or update their listings.
+                </p>
+              </div>
+            </div>
+            <Link
+              to="/createProduct"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-red-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-800"
+            >
+              Manage inventory <ArrowRight size={15} />
+            </Link>
+          </div>
+          <ul className="divide-y divide-red-100">
+            {outOfStockProducts.slice(0, 5).map((product) => (
+              <li key={product._id} className="flex items-center justify-between gap-4 px-5 py-3.5 sm:px-6">
+                <div className="flex min-w-0 items-center gap-3">
+                  {product.image ? (
+                    <img src={product.image} alt="" className="size-10 shrink-0 rounded-lg bg-gray-100 object-cover" />
+                  ) : (
+                    <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-gray-100 text-gray-400">
+                      <Package size={17} />
+                    </span>
+                  )}
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-semibold text-gray-800">{product.name}</p>
+                    <p className="text-xs text-gray-500">{product.category?.name || "Uncategorized"} · 0 available</p>
+                  </div>
+                </div>
+                <Link
+                  to={`/updateProduct/${product._id}`}
+                  className="shrink-0 text-xs font-bold text-red-700 underline-offset-4 hover:underline"
+                >
+                  Edit product
+                </Link>
+              </li>
+            ))}
+            {outOfStockProducts.length > 5 && (
+              <li className="px-5 py-3 text-xs font-medium text-red-800 sm:px-6">
+                And {outOfStockProducts.length - 5} more out-of-stock {outOfStockProducts.length - 5 === 1 ? "product" : "products"}.
+              </li>
+            )}
+          </ul>
+        </section>
+      )}
 
       {/* --- STAT CARDS --- */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
