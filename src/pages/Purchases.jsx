@@ -129,6 +129,9 @@ const Purchases = () => {
                       <p className="font-mono text-[9px] font-semibold tracking-[.14em] text-[#ff4e1f]">ORDER ITEM</p>
                       <h2 className="mt-1 text-lg font-bold">{productName}</h2>
                       <p className="mt-2 text-sm text-slate-500">Quantity: {purchase.quantity ?? 1}</p>
+                      <p className="mt-1 text-xs font-medium text-emerald-700">
+                        Cash on delivery · {purchase.paymentStatus === "paid" ? "Paid" : "Payment due on delivery"}
+                      </p>
                     </div>
                     <div className="sm:text-right">
                       <p className="font-mono text-lg font-black">{formatPrice(purchase.price)}</p>

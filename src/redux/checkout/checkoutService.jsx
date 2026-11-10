@@ -12,6 +12,7 @@ export const createPurchase = async (payload) => {
   const res = await api.post("/purchases/customer", {
     items: mappedItems,
     userInfo: payload.userInfo,
+    paymentMethod: payload.paymentMethod,
   });
   return res.data;
 };

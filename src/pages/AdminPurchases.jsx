@@ -143,7 +143,8 @@ const AdminPurchases = () => {
         ) : (
           <section className="space-y-5" aria-label="Customer order cards">
             {filteredPurchases.map((purchase) => {
-              const delivery = purchase.customerPurchase?.userInfo;
+              const customerPurchase = purchase.customerPurchase;
+              const delivery = customerPurchase?.userInfo;
               const customerName = purchase.customer?.name || "Customer";
               return (
                 <article key={purchase._id} className="overflow-hidden rounded-2xl border border-[#171715]/10 bg-white shadow-sm transition hover:shadow-md">
@@ -186,6 +187,9 @@ const AdminPurchases = () => {
                         <h2 className="mt-1 text-lg font-bold leading-snug">{purchase.product?.name || "Product no longer available"}</h2>
                         <p className="mt-2 text-sm text-slate-500">Quantity: <span className="font-semibold text-slate-700">{purchase.quantity}</span></p>
                         <p className="mt-2 font-mono text-lg font-black">{formatPrice(purchase.price)}</p>
+                        <p className="mt-1 text-xs font-medium text-emerald-700">
+                          Cash on delivery · {customerPurchase?.paymentStatus === "paid" ? "Paid" : "Payment due on delivery"}
+                        </p>
                       </div>
                     </div>
 

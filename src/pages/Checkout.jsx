@@ -4,7 +4,7 @@ import { clearCart } from "../redux/cart/cartSlice";
 import { toast } from "react-toastify";
 import { createPurchaseThunk } from "../redux/checkout/checkoutSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Check, LockKeyhole, MapPin, Phone, ShieldCheck, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Banknote, Check, LockKeyhole, MapPin, Phone, ShieldCheck, ShoppingBag } from "lucide-react";
 
 const formatPrice = (price) =>
   new Intl.NumberFormat("en-US", {
@@ -50,7 +50,7 @@ const Checkout = () => {
 
     setSubmitting(true);
     try {
-      await dispatch(createPurchaseThunk({ items, userInfo })).unwrap();
+      await dispatch(createPurchaseThunk({ items, userInfo, paymentMethod: "cash_on_delivery" })).unwrap();
       toast.success("Order placed successfully.");
       dispatch(clearCart());
       navigate("/customer/purchases");
@@ -172,6 +172,27 @@ const Checkout = () => {
               </div>
             </section>
 
+            <section className="rounded-2xl border border-[#ff4e1f]/30 bg-white p-5 sm:p-7" aria-labelledby="payment-heading">
+              <div className="flex items-start gap-3">
+                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-orange-50 text-[#ff4e1f]">
+                  <Banknote size={18} />
+                </span>
+                <div>
+                  <h2 id="payment-heading" className="font-bold">Payment method</h2>
+                  <p className="mt-1 text-sm leading-6 text-slate-500">
+                    Pay with cash when your order arrives. No payment is collected online.
+                  </p>
+                  <div className="mt-4 flex items-center gap-3 rounded-xl border border-[#ff4e1f]/25 bg-orange-50/60 p-4">
+                    <span className="grid size-5 place-items-center rounded-full border-[6px] border-[#ff4e1f] bg-white" aria-hidden="true" />
+                    <span>
+                      <span className="block text-sm font-semibold text-[#171715]">Cash on delivery</span>
+                      <span className="mt-0.5 block text-xs text-slate-500">Pay the order total to the delivery person.</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             <section className="rounded-2xl border border-[#171715]/10 bg-white p-5 sm:p-7">
               <div className="flex items-start gap-3">
                 <span className="grid size-9 shrink-0 place-items-center rounded-full bg-emerald-50 text-emerald-700">
@@ -228,8 +249,8 @@ const Checkout = () => {
                 <span className="font-mono font-semibold text-[#171715]">{formatPrice(total)}</span>
               </div>
               <div className="flex justify-between gap-4 text-slate-500">
-                <span>Shipping & taxes</span>
-                <span className="text-xs">Calculated later</span>
+                <span>Payment</span>
+                <span className="text-xs">Cash on delivery</span>
               </div>
             </div>
 
@@ -246,7 +267,7 @@ const Checkout = () => {
               {submitting ? "Placing your order..." : <>Place order <ArrowRight size={17} /></>}
             </button>
             <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-[11px] leading-5 text-slate-400">
-              <Check size={13} className="text-emerald-600" /> Shipping and taxes are confirmed at checkout.
+              <Check size={13} className="text-emerald-600" /> Pay in cash when your order is delivered.
             </p>
           </aside>
         </form>
