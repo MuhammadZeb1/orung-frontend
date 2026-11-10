@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
+  Download,
   FileSpreadsheet,
   ImagePlus,
   PackagePlus,
@@ -23,6 +24,10 @@ const initialForm = {
   subCategory: "",
   description: "",
 };
+
+const csvTemplate =
+  "name,description,basePrice,price,quantity,categoryName,subCategory,image\n" +
+  '"Relaxed cotton overshirt","Lightweight cotton overshirt",45,59.99,20,Men,Outerwear,https://example.com/overshirt.jpg\n';
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
@@ -82,6 +87,13 @@ const CreateProduct = () => {
   const handleBulkFileChange = async (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
+
+    const extension = file.name.split(".").pop()?.toLowerCase();
+    if (!["csv", "xlsx", "xls"].includes(extension)) {
+      toast.error("Choose a CSV or Excel file (.csv, .xlsx, or .xls).");
+      event.target.value = "";
+      return;
+    }
 
     const formData = new FormData();
     formData.append("file", file);
@@ -326,6 +338,13 @@ const CreateProduct = () => {
               >
                 <Upload size={16} /> {bulkUploading ? "Importing products..." : "Upload CSV / Excel"}
               </button>
+              <a
+                href={`data:text/csv;charset=utf-8,${encodeURIComponent(csvTemplate)}`}
+                download="orung-products-template.csv"
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-[#171715]"
+              >
+                <Download size={15} /> Download CSV template
+              </a>
               <p className="mt-3 text-xs leading-5 text-slate-400">
                 Include columns for name, description, basePrice, price, quantity, categoryName, subCategory, and image.
               </p>

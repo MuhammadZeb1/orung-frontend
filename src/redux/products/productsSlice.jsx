@@ -25,7 +25,9 @@ export const addProduct = createAsyncThunk(
     try {
       return await createProductAPI(formData);
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      return thunkAPI.rejectWithValue(
+        err.response?.data?.message || err.message || "Failed to create product"
+      );
     }
   }
 );

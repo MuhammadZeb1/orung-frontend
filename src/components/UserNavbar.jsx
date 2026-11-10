@@ -33,7 +33,7 @@ export default function UserNavbar() {
           <span className="text-lg font-bold tracking-[.12em] text-[#121212] sm:text-xl">ORUNG</span>
         </Link>
 
-        <nav className="col-span-3 row-start-2 flex items-center justify-center gap-1 pt-2 sm:gap-3 sm:pt-3 md:col-span-1 md:col-start-2 md:row-start-1 md:pt-0" aria-label="Shop categories">
+        <nav className="col-span-3 row-start-2 flex items-center justify-center gap-1 pt-2 sm:gap-3 sm:pt-3 md:col-span-1 md:col-start-2 md:row-start-1 md:pt-0" aria-label="Shop navigation">
           <NavLink to="/" end className={categoryLinkClass}>
             Home
           </NavLink>
@@ -46,6 +46,9 @@ export default function UserNavbar() {
               {category}
             </NavLink>
           ))}
+          <NavLink to="/affiliate" className={categoryLinkClass}>
+            Affiliate
+          </NavLink>
         </nav>
 
         <div className="col-start-3 row-start-1 flex items-center justify-self-end gap-2 sm:gap-3">
